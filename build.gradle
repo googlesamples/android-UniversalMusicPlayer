@@ -28,6 +28,7 @@ buildscript {
         androidx_car_version = '1.0.0-alpha7'
         androidx_core_ktx_version = '1.3.1'
         androidx_media_version = '1.0.1'
+        androidx_mediarouter_version = '1.2.0-rc01'
         androidx_preference_version = '1.1.1'
         androidx_test_runner_version = '1.3.0'
         arch_lifecycle_version = '2.2.0'

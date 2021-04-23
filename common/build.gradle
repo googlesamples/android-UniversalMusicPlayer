@@ -51,6 +51,7 @@ dependencies {
     api "org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version"
 
     api "androidx.media:media:$androidx_media_version"
+    implementation "androidx.mediarouter:mediarouter:$androidx_mediarouter_version"
 
     api "com.google.code.gson:gson:$gson_version"
 

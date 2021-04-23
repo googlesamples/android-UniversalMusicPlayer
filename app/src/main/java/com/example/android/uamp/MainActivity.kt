@@ -18,7 +18,6 @@ package com.example.android.uamp
 
 import android.media.AudioManager
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
