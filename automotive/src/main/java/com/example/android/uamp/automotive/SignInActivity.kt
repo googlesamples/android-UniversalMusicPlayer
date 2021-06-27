@@ -40,6 +40,12 @@ class SignInActivity : AppCompatActivity() {
             }
         })
 
+        viewModel.missingFields.observe(this, Observer { missing ->
+            if (missing) {
+                Toast.makeText(this, R.string.missing_fields_error, Toast.LENGTH_SHORT).show()
+            }
+        })
+
         supportFragmentManager.beginTransaction()
             .add(R.id.sign_in_container, SignInLandingPageFragment())
             .commit()

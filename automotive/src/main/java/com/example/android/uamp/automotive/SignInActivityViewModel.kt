@@ -19,9 +19,7 @@ package com.example.android.uamp.automotive
 import android.app.Activity
 import android.app.Application
 import android.content.ComponentName
-import android.os.Bundle
-import android.text.TextUtils
-import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -41,18 +39,17 @@ class SignInActivityViewModel(application: Application) : AndroidViewModel(appli
     private val _loggedIn = MutableLiveData<Boolean>()
     val loggedIn: LiveData<Boolean> = _loggedIn
 
+    private val _missingFields = MutableLiveData<Boolean>()
+    val missingFields: LiveData<Boolean> = _missingFields
+
     fun login(email: String, password: String) {
-        if (TextUtils.isEmpty(email) or TextUtils.isEmpty(password)) {
-            Toast.makeText(
-                applicationContext,
-                applicationContext.getString(R.string.missing_fields_error),
-                Toast.LENGTH_SHORT
-            ).show()
+        if (email.isEmpty() or password.isEmpty()) {
+            _missingFields.postValue(true)
         } else {
-            val loginParams = Bundle().apply {
-                putString(LOGIN_EMAIL, email)
-                putString(LOGIN_PASSWORD, password)
-            }
+            val loginParams = bundleOf(
+                LOGIN_EMAIL to email,
+                LOGIN_PASSWORD to password
+            )
             musicServiceConnection.sendCommand(LOGIN, loginParams) { resultCode, _ ->
                 _loggedIn.postValue(resultCode == Activity.RESULT_OK)
             }
